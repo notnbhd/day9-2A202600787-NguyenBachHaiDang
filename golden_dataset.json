@@ -1,0 +1,77 @@
+[
+  {
+    "question": "Bộ luật Hình sự số 100/2015/QH13 có hiệu lực từ ngày nào và được sửa đổi, bổ sung bởi những luật nào tính đến tháng 6 năm 2025?",
+    "expected_answer": "Bộ luật Hình sự số 100/2015/QH13 có hiệu lực kể từ ngày 01 tháng 01 năm 2018. Nó được sửa đổi, bổ sung bởi ba luật: Luật số 12/2017/QH14 (hiệu lực từ 01/01/2018), Luật Tư pháp người chưa thành niên số 59/2024/QH15 (hiệu lực từ 01/01/2026), và Luật số 86/2025/QH15 (hiệu lực từ 01/07/2025).",
+    "expected_context": "00855e53-4ff9-48ee-bff6-baf4711edc7e"
+  },
+  {
+    "question": "Nhiệm vụ cụ thể của Bộ luật Hình sự Việt Nam được quy định như thế nào?",
+    "expected_answer": "Bộ luật Hình sự có nhiệm vụ bảo vệ chủ quyền quốc gia, an ninh của đất nước, bảo vệ chế độ xã hội chủ nghĩa, quyền con người, quyền công dân, bảo vệ quyền bình đẳng giữa đồng bào các dân tộc, bảo vệ lợi ích của Nhà nước, tổ chức, bảo vệ trật tự pháp luật, chống mọi hành vi phạm tội; giáo dục mọi người ý thức tuân theo pháp luật, phòng ngừa và đấu tranh chống tội phạm.",
+    "expected_context": "2a8c4176-1610-4a9c-8021-eb229321f696"
+  },
+  {
+    "question": "Cơ sở để truy cứu trách nhiệm hình sự đối với cá nhân và pháp nhân thương mại được quy định ra sao?",
+    "expected_answer": "Chỉ người nào phạm một tội đã được Bộ luật Hình sự quy định mới phải chịu trách nhiệm hình sự. Đối với pháp nhân thương mại, chỉ pháp nhân thương mại nào phạm một tội đã được quy định tại Điều 76 của Bộ luật này mới phải chịu trách nhiệm hình sự.",
+    "expected_context": "e0112df1-c0ba-4a9e-97f3-565fee134d9b"
+  },
+  {
+    "question": "Chính sách khoan hồng của Nhà nước đối với người phạm tội được thể hiện qua các hành vi nào trong quá trình giải quyết vụ án?",
+    "expected_answer": "Nhà nước khoan hồng đối với người tự thú, đầu thú, thành khẩn khai báo, tố giác đồng phạm, lập công chuộc tội, tích cực hợp tác với cơ quan có trách nhiệm trong việc phát hiện tội phạm hoặc trong quá trình giải quyết vụ án, ăn năn hối cải, tự nguyện sửa chữa hoặc bồi thường thiệt hại gây ra.",
+    "expected_context": "fc3c6fc9-b12a-472a-8630-3af619574651"
+  },
+  {
+    "question": "Theo quy định pháp luật, các cơ quan chức năng nào có trách nhiệm chính trong việc thực hiện chức năng phòng ngừa và đấu tranh chống tội phạm?",
+    "expected_answer": "Các cơ quan bao gồm: Cơ quan Công an, Viện kiểm sát nhân dân, Tòa án nhân dân và các cơ quan hữu quan khác.",
+    "expected_context": "08c00553-66e2-4077-ab91-9d6b7cf8556c"
+  },
+  {
+    "question": "Hành vi phạm tội hoặc hậu quả xảy ra ở những khu vực đặc biệt nào bên ngoài đất liền vẫn thuộc phạm vi áp dụng của Bộ luật Hình sự Việt Nam?",
+    "expected_answer": "Bộ luật Hình sự được áp dụng đối với hành vi phạm tội hoặc hậu quả của hành vi phạm tội xảy ra trên tàu bay, tàu biển mang quốc tịch Việt Nam hoặc tại vùng đặc quyền kinh tế, thềm lục địa của Việt Nam.",
+    "expected_context": "aec5f899-22f5-40c1-bd52-c5e00415db6d"
+  },
+  {
+    "question": "Nguyên tắc áp dụng hiệu lực theo thời gian của Bộ luật Hình sự đối với hành vi phạm tội được quy định như thế nào?",
+    "expected_answer": "Điều luật được áp dụng đối với một hành vi phạm tội là điều luật đang có hiệu lực thi hành tại thời điểm mà hành vi phạm tội được thực hiện.",
+    "expected_context": "38627084-dfb6-4d4a-af4f-114ae066cbda"
+  },
+  {
+    "question": "Những loại điều luật nào của Bộ luật Hình sự có tính chất không có lợi cho người phạm tội thì không được áp dụng hồi tố?",
+    "expected_answer": "Điều luật quy định một tội phạm mới, một hình phạt nặng hơn, một tình tiết tăng nặng mới hoặc hạn chế phạm vi áp dụng án treo, miễn trách nhiệm hình sự, loại trừ trách nhiệm hình sự, miễn hình phạt, giảm hình phạt, xóa án tích và quy định khác không có lợi cho người phạm tội, thì không được áp dụng đối với hành vi phạm tội đã thực hiện trước khi điều luật đó có hiệu lực thi hành.",
+    "expected_context": "20ea5ce8-867d-4213-ab67-714524ce6739"
+  },
+  {
+    "question": "Dựa trên tính chất và mức độ nguy hiểm cho xã hội, khung hình phạt tối đa dành cho tội phạm ít nghiêm trọng và tội phạm nghiêm trọng được phân chia như thế nào?",
+    "expected_answer": "Tội phạm ít nghiêm trọng có mức cao nhất của khung hình phạt là phạt tiền, phạt cải tạo không giam giữ hoặc phạt tù đến 03 năm. Tội phạm nghiêm trọng có mức cao nhất của khung hình phạt là từ trên 03 năm tù đến 07 năm tù.",
+    "expected_context": "668ea91d-16f5-46d2-bc8f-916b4509ffe4"
+  },
+  {
+    "question": "Bộ luật Hình sự quy định như thế nào về độ tuổi chịu trách nhiệm hình sự của người từ đủ 16 tuổi trở lên?",
+    "expected_answer": "Người từ đủ 16 tuổi trở lên phải chịu trách nhiệm hình sự về mọi tội phạm, trừ những tội phạm mà Bộ luật này có quy định khác.",
+    "expected_context": "9c91df67-8a78-463c-9da0-212428ff2c7f"
+  },
+  {
+    "question": "Khái niệm đồng phạm được định nghĩa như thế nào và hình thức 'phạm tội có tổ chức' đòi hỏi yếu tố gì?",
+    "expected_answer": "Đồng phạm là trường hợp có hai người trở lên cố ý cùng thực hiện một tội phạm. Phạm tội có tổ chức là hình thức đồng phạm có sự câu kết chặt chẽ giữa những người cùng thực hiện tội phạm.",
+    "expected_context": "94098ffc-bc12-466e-9c81-46776051bc94"
+  },
+  {
+    "question": "Trong đồng phạm, vai trò và nhiệm vụ cụ thể của người thực hành, người tổ chức, người xúi giục và người giúp sức được phân biệt ra sao?",
+    "expected_answer": "Người thực hành là người trực tiếp thực hiện tội phạm. Người tổ chức là người chủ mưu, cầm đầu, chỉ huy việc thực hiện tội phạm. Người xúi giục là người kích động, dụ dỗ, thúc đẩy người khác thực hiện tội phạm. Người giúp sức là người tạo điều kiện tinh thần hoặc vật chất cho việc thực hiện tội phạm.",
+    "expected_context": "71193b38-c0ac-4ca1-9988-af4a6d6b5dd7"
+  },
+  {
+    "question": "Những người nào có mối quan hệ thân thích với người phạm tội được miễn trách nhiệm hình sự về tội che giấu tội phạm (ngoại trừ các tội xâm phạm an ninh quốc gia)?",
+    "expected_answer": "Người che giấu tội phạm là ông, bà, cha, mẹ, con, cháu, anh chị em ruột, vợ hoặc chồng của người phạm tội không phải chịu trách nhiệm hình sự, trừ trường hợp che giấu các tội xâm phạm an ninh quốc gia hoặc tội đặc biệt nghiêm trọng khác quy định tại Điều 389.",
+    "expected_context": "4966d7d1-042a-4918-952b-08b8218e2393"
+  },
+  {
+    "question": "Chính sách của Nhà nước đối với công tác cai nghiện và quản lý người nghiện ma túy chú trọng khuyến khích điều gì?",
+    "expected_answer": "Nhà nước khuyến khích người nghiện ma túy tự nguyện cai nghiện ma túy, điều trị nghiện chất dạng thuốc phiện bằng thuốc thay thế và quản lý chặt chẽ người sử dụng trái phép chất ma túy, người nghiện ma túy.",
+    "expected_context": "11beaae1-1139-4955-982b-e9168ffd1478"
+  },
+  {
+    "question": "Trong việc vận chuyển chất ma túy hoặc tiền chất theo quy định, người vận chuyển có những trách nhiệm bắt buộc nào khi đóng gói và quản lý?",
+    "expected_answer": "Khi thực hiện việc vận chuyển phải đóng gói, niêm phong theo quy định của cơ quan có thẩm quyền; chịu trách nhiệm về số lượng, chất lượng, có biện pháp bảo vệ an toàn, không để bị thất thoát trong quá trình vận chuyển và chịu sự theo dõi, kiểm tra, giám sát của cơ quan nhà nước có thẩm quyền.",
+    "expected_context": "6254e582-2579-47e0-9c01-7a1d93fa952e"
+  }
+]

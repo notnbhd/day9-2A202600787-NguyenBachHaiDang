@@ -1,10 +1,17 @@
 """Stage 4: Multi-Agent System (In-Process)
 
-Multiple specialised agents collaborate on a complex legal question.
-This mirrors Stage 5's architecture (law_agent/graph.py) but runs
-entirely in-process — no HTTP, no A2A protocol, no separate servers.
+Multiple specialised agents collaborate on a complex legal question
+about Vietnamese drug law. Each specialist focuses on a specific domain
+and uses Weaviate hybrid search for grounded retrieval.
 
-Graph: analyze_law -> check_routing -> parallel [call_tax, call_compliance] -> aggregate -> END
+Graph topology:
+    analyze_law -> check_routing -> parallel [case_news, law_detail, drug_prevention]
+        -> aggregate -> END
+
+Improvements over Stage 3:
+  - Specialist agents with domain-specific prompts
+  - Parallel execution via LangGraph Send API
+  - Conditional routing based on question analysis
 """
 
 import asyncio
@@ -18,84 +25,141 @@ from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.tools import tool
 
+import weaviate
+
 from common.llm import get_llm
+
+# ---------------------------------------------------------------------------
+# Weaviate connection & embedding helpers (shared by all agents)
+# ---------------------------------------------------------------------------
+
+WEAVIATE_COLLECTION = os.getenv("WEAVIATE_COLLECTION", "DrugLawDocs")
+HYBRID_ALPHA = 0.75
+
+
+def _get_weaviate_client() -> weaviate.WeaviateClient:
+    """Connect to Weaviate (local or cloud)."""
+    weaviate_url = os.getenv("WEAVIATE_URL", "http://localhost:8080")
+    weaviate_api_key = os.getenv("WEAVIATE_API_KEY", "")
+
+    if weaviate_api_key:
+        client = weaviate.connect_to_weaviate_cloud(
+            cluster_url=weaviate_url,
+            auth_credentials=weaviate.auth.AuthApiKey(weaviate_api_key),
+        )
+    else:
+        client = weaviate.connect_to_local(
+            host=weaviate_url.replace("http://", "").replace("https://", "").split(":")[0],
+            port=int(weaviate_url.split(":")[-1]) if ":" in weaviate_url.rsplit("/", 1)[-1] else 8080,
+        )
+    return client
+
+
+def _embed_query(text: str) -> list[float]:
+    """Compute a 1536-dim embedding via OpenRouter (text-embedding-3-small)."""
+    from langchain_openai import OpenAIEmbeddings
+
+    embeddings = OpenAIEmbeddings(
+        model="openai/text-embedding-3-small",
+        openai_api_key=os.getenv("OPENROUTER_API_KEY"),
+        openai_api_base="https://openrouter.ai/api/v1",
+    )
+    return embeddings.embed_query(text)
+
+
+def _weaviate_hybrid(query: str, limit: int = 3, doc_type_filter: str | None = None) -> str:
+    """Shared Weaviate hybrid search helper used by specialist tools."""
+    try:
+        from weaviate.classes.query import Filter, MetadataQuery
+
+        query_vector = _embed_query(query)
+        client = _get_weaviate_client()
+        collection = client.collections.get(WEAVIATE_COLLECTION)
+
+        kwargs = {
+            "query": query,
+            "vector": query_vector,
+            "alpha": HYBRID_ALPHA,
+            "limit": limit,
+            "return_metadata": MetadataQuery(score=True),
+        }
+        if doc_type_filter:
+            kwargs["filters"] = Filter.by_property("doc_type").equal(doc_type_filter)
+
+        results = collection.query.hybrid(**kwargs)
+
+        if results.objects:
+            formatted = []
+            for i, obj in enumerate(results.objects, 1):
+                props = obj.properties
+                source = props.get("source", "unknown")
+                chunk_idx = props.get("chunk_index", "?")
+                content = props.get("content", "")
+                score = obj.metadata.score
+                score_str = f", score={score:.4f}" if score is not None else ""
+                formatted.append(
+                    f"[Result {i} | {source} (chunk {chunk_idx}{score_str})]\n{content}"
+                )
+            client.close()
+            return "\n\n---\n\n".join(formatted)
+
+        client.close()
+        return "Không tìm thấy kết quả phù hợp."
+    except Exception as e:
+        return f"Lỗi truy vấn Weaviate: {e}"
+
 
 # ---------------------------------------------------------------------------
 # Tools for specialist sub-agents
 # ---------------------------------------------------------------------------
 
 @tool
-def search_tax_law(query: str) -> str:
-    """Search tax law knowledge base for relevant statutes and penalties.
+def search_criminal_law(query: str) -> str:
+    """Tra cứu Bộ luật Hình sự Việt Nam — các tội danh, khung hình phạt,
+    tình tiết tăng nặng/giảm nhẹ liên quan đến ma túy.
 
     Args:
-        query: Natural language query about tax law.
+        query: Câu hỏi về luật hình sự (tội danh, mức án, điều luật).
     """
-    knowledge = [
-        (
-            ["tax", "evasion", "fraud", "irs"],
-            "Tax evasion (26 U.S.C. § 7201): felony, up to $250K fine and 5 years prison. "
-            "Civil fraud penalty: 75% of underpayment (IRC § 6663). Failure to file: up to "
-            "$25K fine and 1 year prison.",
-        ),
-        (
-            ["offshore", "overseas", "foreign", "fbar", "fatca"],
-            "FBAR penalties: up to $100K or 50% of account balance per violation. "
-            "FATCA non-compliance: 30% withholding on US-source payments. "
-            "Willful violations may trigger criminal prosecution.",
-        ),
-        (
-            ["transfer", "pricing", "corporate"],
-            "Transfer pricing violations (IRC § 482): IRS can reallocate income between "
-            "related entities. Penalties: 20-40% of underpayment for substantial/gross "
-            "valuation misstatements.",
-        ),
-    ]
-    query_lower = query.lower()
-    results = []
-    for keywords, text in knowledge:
-        if any(kw in query_lower for kw in keywords):
-            results.append(text)
-    return "\n\n".join(results) if results else "No specific tax law matches found."
+    return _weaviate_hybrid(query, limit=3, doc_type_filter="legal")
 
 
 @tool
-def search_compliance_law(query: str) -> str:
-    """Search regulatory compliance knowledge base for applicable frameworks.
+def search_drug_news(query: str) -> str:
+    """Tra cứu các vụ án ma túy thực tế tại Việt Nam từ báo chí —
+    các vụ nghệ sĩ, người nổi tiếng bị bắt, mức án, chi tiết vụ việc.
 
     Args:
-        query: Natural language query about regulatory compliance.
+        query: Từ khóa tìm kiếm (tên người, loại tội, vụ việc cụ thể).
     """
-    knowledge = [
-        (
-            ["data", "privacy", "gdpr", "ccpa", "consent", "user"],
-            "CCPA: fines up to $7,500 per intentional violation. GDPR: up to 4% of global "
-            "revenue or EUR 20M. FTC Act Section 5 for unfair/deceptive practices. "
-            "Class action exposure under state privacy laws ($100-$750 per consumer).",
-        ),
-        (
-            ["sox", "sarbanes", "financial", "sec", "reporting"],
-            "SOX § 906: false certification — up to $5M fine, 20 years prison. "
-            "§ 802: record destruction — up to 20 years. § 1107: whistleblower "
-            "retaliation — up to 10 years. SEC officer/director bars.",
-        ),
-        (
-            ["fcpa", "bribery", "corruption", "foreign"],
-            "FCPA anti-bribery: up to $250K fine per violation (individuals), "
-            "$2M (corporations). Criminal penalties: up to 5 years prison. "
-            "Books and records provisions apply to all SEC-reporting companies.",
-        ),
-    ]
-    query_lower = query.lower()
-    results = []
-    for keywords, text in knowledge:
-        if any(kw in query_lower for kw in keywords):
-            results.append(text)
-    return "\n\n".join(results) if results else "No specific compliance matches found."
+    return _weaviate_hybrid(query, limit=5, doc_type_filter="news")
+
+
+@tool
+def search_drug_prevention_law(query: str) -> str:
+    """Tra cứu Luật Phòng chống ma túy Việt Nam (2021, 2025) — các quy định
+    về phòng ngừa, cai nghiện, quản lý người sử dụng ma túy, hiệu lực.
+
+    Args:
+        query: Câu hỏi về luật phòng chống ma túy.
+    """
+    enriched = f"{query} phòng chống ma túy luật"
+    return _weaviate_hybrid(enriched, limit=3, doc_type_filter="legal")
+
+
+@tool
+def check_law_effective_date(law_name: str) -> str:
+    """Tra cứu thời gian bắt đầu có hiệu lực thi hành của bộ luật.
+
+    Args:
+        law_name: Tên bộ luật (ví dụ: 'Bộ luật Hình sự', 'Luật PCMT 2025').
+    """
+    enriched = f"{law_name} hiệu lực thi hành ngày có hiệu lực"
+    return _weaviate_hybrid(enriched, limit=3, doc_type_filter="legal")
 
 
 # ---------------------------------------------------------------------------
-# State definition (mirrors law_agent/graph.py)
+# State definition
 # ---------------------------------------------------------------------------
 
 from typing import Annotated, TypedDict
@@ -112,10 +176,12 @@ def _last_wins(a: str, b: str) -> str:
 class LegalState(TypedDict):
     question: str
     law_analysis: str
-    needs_tax: bool
-    needs_compliance: bool
-    tax_result: Annotated[str, _last_wins]
-    compliance_result: Annotated[str, _last_wins]
+    needs_case_news: bool
+    needs_law_detail: bool
+    needs_drug_prevention: bool
+    case_news_result: Annotated[str, _last_wins]
+    law_detail_result: Annotated[str, _last_wins]
+    drug_prevention_result: Annotated[str, _last_wins]
     final_answer: str
 
 
@@ -125,42 +191,53 @@ class LegalState(TypedDict):
 
 async def analyze_law(state: LegalState) -> dict:
     """Lead attorney analyses the legal aspects of the question."""
-    print("\n  [Node: analyze_law] Lead attorney analysing legal aspects...")
+    print("\n  [Node: analyze_law] Chuyên gia pháp luật phân tích câu hỏi...")
     llm = get_llm()
     messages = [
         SystemMessage(
             content=(
-                "You are a senior corporate litigation attorney specialising in contract law, "
-                "tort law, and general business law. Analyse the legal aspects of the question "
-                "thoroughly. Keep your analysis under 200 words."
+                "Bạn là luật sư hình sự cấp cao chuyên về pháp luật Việt Nam, "
+                "đặc biệt các tội liên quan đến ma túy. Phân tích câu hỏi pháp lý "
+                "dưới đây, xác định các khía cạnh cần tra cứu sâu hơn. "
+                "Giữ phân tích dưới 200 từ."
             )
         ),
         HumanMessage(content=state["question"]),
     ]
     result = await llm.ainvoke(messages)
-    print(f"  [Node: analyze_law] Done ({len(result.content)} chars)")
+    print(f"  [Node: analyze_law] Hoàn thành ({len(result.content)} ký tự)")
     return {"law_analysis": result.content}
 
 
 async def check_routing(state: LegalState) -> dict:
     """Routing node: determine which specialist sub-agents are needed."""
-    print("\n  [Node: check_routing] Determining which specialists are needed...")
+    print("\n  [Node: check_routing] Xác định cần gọi chuyên gia nào...")
     llm = get_llm()
     messages = [
         SystemMessage(
             content=(
-                'You are a legal routing expert. Based on the question, decide whether '
-                'specialist sub-agents are needed.\n'
-                'Reply with ONLY valid JSON — no markdown, no extra text:\n'
-                '{"needs_tax": <true|false>, "needs_compliance": <true|false>}\n\n'
-                'needs_tax = true  → question involves tax law, IRS, tax evasion, penalties\n'
-                'needs_compliance = true → question involves regulatory compliance, SEC, SOX, AML, FCPA'
+                'Bạn là chuyên gia routing. Dựa vào câu hỏi và phân tích ban đầu, '
+                'quyết định cần gọi chuyên gia nào.\n'
+                'Trả lời CHỈDUY NHẤT JSON hợp lệ — không markdown, không text thừa:\n'
+                '{"needs_case_news": <true|false>, "needs_law_detail": <true|false>, '
+                '"needs_drug_prevention": <true|false>}\n\n'
+                'needs_case_news = true → câu hỏi liên quan đến vụ án thực tế, nghệ sĩ, '
+                'người nổi tiếng bị bắt vì ma túy\n'
+                'needs_law_detail = true → cần tra cứu điều luật cụ thể, khung hình phạt, '
+                'tội danh trong Bộ luật Hình sự\n'
+                'needs_drug_prevention = true → cần thông tin về Luật Phòng chống ma túy, '
+                'cai nghiện, hiệu lực luật mới'
             )
         ),
-        HumanMessage(content=state["question"]),
+        HumanMessage(
+            content=f"Câu hỏi: {state['question']}\n\n"
+                    f"Phân tích sơ bộ: {state.get('law_analysis', 'N/A')}"
+        ),
     ]
     result = await llm.ainvoke(messages)
     raw = result.content.strip()
+
+    # Strip markdown code fences if present
     if raw.startswith("```"):
         raw = raw.split("```")[1]
         if raw.startswith("json"):
@@ -170,104 +247,141 @@ async def check_routing(state: LegalState) -> dict:
     try:
         parsed = json.loads(raw)
     except json.JSONDecodeError:
-        parsed = {"needs_tax": True, "needs_compliance": True}
+        # Default: all specialists
+        parsed = {"needs_case_news": True, "needs_law_detail": True, "needs_drug_prevention": True}
 
-    needs_tax = bool(parsed.get("needs_tax", True))
-    needs_compliance = bool(parsed.get("needs_compliance", True))
-    print(f"  [Node: check_routing] needs_tax={needs_tax}, needs_compliance={needs_compliance}")
-    return {"needs_tax": needs_tax, "needs_compliance": needs_compliance}
+    needs_case_news = bool(parsed.get("needs_case_news", False))
+    needs_law_detail = bool(parsed.get("needs_law_detail", True))
+    needs_drug_prevention = bool(parsed.get("needs_drug_prevention", False))
+
+    print(f"  [Node: check_routing] case_news={needs_case_news}, "
+          f"law_detail={needs_law_detail}, drug_prevention={needs_drug_prevention}")
+    return {
+        "needs_case_news": needs_case_news,
+        "needs_law_detail": needs_law_detail,
+        "needs_drug_prevention": needs_drug_prevention,
+    }
 
 
 def route_to_specialists(state: LegalState) -> list[Send]:
     """Routing function: dispatch parallel Send objects to specialist nodes."""
     sends: list[Send] = []
-    if state.get("needs_tax"):
-        sends.append(Send("call_tax_specialist", state))
-    if state.get("needs_compliance"):
-        sends.append(Send("call_compliance_specialist", state))
+    if state.get("needs_case_news"):
+        sends.append(Send("call_case_news_specialist", state))
+    if state.get("needs_law_detail"):
+        sends.append(Send("call_law_detail_specialist", state))
+    if state.get("needs_drug_prevention"):
+        sends.append(Send("call_drug_prevention_specialist", state))
     if not sends:
         sends.append(Send("aggregate", state))
     return sends
 
 
-async def call_tax_specialist(state: LegalState) -> dict:
-    """Tax specialist sub-agent (runs as inline ReAct agent)."""
+async def call_case_news_specialist(state: LegalState) -> dict:
+    """Specialist: tra cứu vụ án thực tế từ báo chí (ReAct agent)."""
     from langgraph.prebuilt import create_react_agent
 
-    print("\n  [Node: call_tax_specialist] Tax specialist agent starting...")
+    print("\n  [Node: call_case_news_specialist] Chuyên gia vụ án thực tế đang phân tích...")
 
-    # Reuse the tax system prompt from tax_agent/graph.py
-    tax_prompt = (
-        "You are a specialist tax attorney and CPA with expertise in corporate tax law, "
-        "tax evasion vs. avoidance, IRS enforcement, penalties under IRC §§ 6651/6662/6663, "
-        "FBAR/FATCA requirements, and tax fraud statutes (18 U.S.C. § 7201-7207). "
-        "Use the search_tax_law tool to ground your analysis. Keep your response under 200 words."
+    prompt = (
+        "Bạn là nhà báo pháp luật chuyên theo dõi các vụ án ma túy tại Việt Nam. "
+        "Sử dụng tool search_drug_news để tìm các vụ án thực tế liên quan. "
+        "Trích dẫn tên người, mức án, thời gian. Trả lời dưới 200 từ bằng tiếng Việt."
     )
 
     llm = get_llm()
-    agent = create_react_agent(model=llm, tools=[search_tax_law], prompt=tax_prompt)
+    agent = create_react_agent(model=llm, tools=[search_drug_news], prompt=prompt)
     result = await agent.ainvoke({"messages": [{"role": "user", "content": state["question"]}]})
 
     final_msg = result["messages"][-1].content
-    print(f"  [Node: call_tax_specialist] Done ({len(final_msg)} chars)")
-    return {"tax_result": final_msg}
+    print(f"  [Node: call_case_news_specialist] Hoàn thành ({len(final_msg)} ký tự)")
+    return {"case_news_result": final_msg}
 
 
-async def call_compliance_specialist(state: LegalState) -> dict:
-    """Compliance specialist sub-agent (runs as inline ReAct agent)."""
+async def call_law_detail_specialist(state: LegalState) -> dict:
+    """Specialist: tra cứu điều luật hình sự cụ thể (ReAct agent)."""
     from langgraph.prebuilt import create_react_agent
 
-    print("\n  [Node: call_compliance_specialist] Compliance specialist agent starting...")
+    print("\n  [Node: call_law_detail_specialist] Chuyên gia luật hình sự đang phân tích...")
 
-    # Reuse the compliance system prompt from compliance_agent/graph.py
-    compliance_prompt = (
-        "You are a senior regulatory compliance officer with expertise in SEC enforcement, "
-        "SOX compliance, FTC regulations, FCPA, AML/BSA, GDPR, CCPA, and corporate governance. "
-        "Use the search_compliance_law tool to ground your analysis. Keep your response under 200 words."
+    prompt = (
+        "Bạn là luật sư hình sự cấp cao tại Việt Nam, chuyên về các tội liên quan đến "
+        "ma túy trong Bộ luật Hình sự. Sử dụng tool search_criminal_law và "
+        "check_law_effective_date để tra cứu điều luật cụ thể, khung hình phạt, "
+        "và hiệu lực thi hành. Trích dẫn số điều, khoản cụ thể. "
+        "Trả lời dưới 200 từ bằng tiếng Việt."
     )
 
     llm = get_llm()
-    agent = create_react_agent(model=llm, tools=[search_compliance_law], prompt=compliance_prompt)
+    agent = create_react_agent(
+        model=llm, tools=[search_criminal_law, check_law_effective_date], prompt=prompt
+    )
     result = await agent.ainvoke({"messages": [{"role": "user", "content": state["question"]}]})
 
     final_msg = result["messages"][-1].content
-    print(f"  [Node: call_compliance_specialist] Done ({len(final_msg)} chars)")
-    return {"compliance_result": final_msg}
+    print(f"  [Node: call_law_detail_specialist] Hoàn thành ({len(final_msg)} ký tự)")
+    return {"law_detail_result": final_msg}
+
+
+async def call_drug_prevention_specialist(state: LegalState) -> dict:
+    """Specialist: tra cứu Luật Phòng chống ma túy (ReAct agent)."""
+    from langgraph.prebuilt import create_react_agent
+
+    print("\n  [Node: call_drug_prevention_specialist] Chuyên gia Luật PCMT đang phân tích...")
+
+    prompt = (
+        "Bạn là chuyên gia về Luật Phòng chống ma túy Việt Nam (2021, 2025). "
+        "Sử dụng tool search_drug_prevention_law và check_law_effective_date để "
+        "tra cứu các quy định phòng ngừa, cai nghiện, quản lý người sử dụng ma túy, "
+        "và hiệu lực của các luật liên quan. Trả lời dưới 200 từ bằng tiếng Việt."
+    )
+
+    llm = get_llm()
+    agent = create_react_agent(
+        model=llm, tools=[search_drug_prevention_law, check_law_effective_date], prompt=prompt
+    )
+    result = await agent.ainvoke({"messages": [{"role": "user", "content": state["question"]}]})
+
+    final_msg = result["messages"][-1].content
+    print(f"  [Node: call_drug_prevention_specialist] Hoàn thành ({len(final_msg)} ký tự)")
+    return {"drug_prevention_result": final_msg}
 
 
 async def aggregate(state: LegalState) -> dict:
     """Combine all specialist analyses into a final comprehensive answer."""
-    print("\n  [Node: aggregate] Combining all specialist analyses...")
+    print("\n  [Node: aggregate] Tổng hợp kết quả từ các chuyên gia...")
     llm = get_llm()
 
     sections: list[str] = []
     if state.get("law_analysis"):
-        sections.append(f"## Legal Analysis\n{state['law_analysis']}")
-    if state.get("tax_result"):
-        sections.append(f"## Tax Analysis\n{state['tax_result']}")
-    if state.get("compliance_result"):
-        sections.append(f"## Regulatory Compliance Analysis\n{state['compliance_result']}")
+        sections.append(f"## Phân tích pháp lý tổng quan\n{state['law_analysis']}")
+    if state.get("law_detail_result"):
+        sections.append(f"## Chi tiết luật Hình sự\n{state['law_detail_result']}")
+    if state.get("case_news_result"):
+        sections.append(f"## Vụ án thực tế\n{state['case_news_result']}")
+    if state.get("drug_prevention_result"):
+        sections.append(f"## Luật Phòng chống ma túy\n{state['drug_prevention_result']}")
 
     combined = "\n\n---\n\n".join(sections)
 
     messages = [
         SystemMessage(
             content=(
-                "You are a senior legal counsel synthesising specialist analyses into a "
-                "comprehensive, well-structured response. Combine the following analyses "
-                "into a cohesive answer with clear sections. Avoid redundancy. "
-                "Keep your response under 500 words."
+                "Bạn là cố vấn pháp luật cấp cao, tổng hợp các phân tích chuyên sâu "
+                "từ nhiều chuyên gia thành một câu trả lời toàn diện, dễ hiểu. "
+                "Kết hợp thông tin từ các nguồn, tránh lặp lại. Trích dẫn điều luật cụ thể. "
+                "Trả lời bằng tiếng Việt, dưới 500 từ."
             )
         ),
         HumanMessage(content=combined),
     ]
     result = await llm.ainvoke(messages)
-    print(f"  [Node: aggregate] Done ({len(result.content)} chars)")
+    print(f"  [Node: aggregate] Hoàn thành ({len(result.content)} ký tự)")
     return {"final_answer": result.content}
 
 
 # ---------------------------------------------------------------------------
-# Graph construction (mirrors law_agent/graph.py topology)
+# Graph construction
 # ---------------------------------------------------------------------------
 
 def create_graph():
@@ -276,8 +390,9 @@ def create_graph():
 
     graph.add_node("analyze_law", analyze_law)
     graph.add_node("check_routing", check_routing)
-    graph.add_node("call_tax_specialist", call_tax_specialist)
-    graph.add_node("call_compliance_specialist", call_compliance_specialist)
+    graph.add_node("call_case_news_specialist", call_case_news_specialist)
+    graph.add_node("call_law_detail_specialist", call_law_detail_specialist)
+    graph.add_node("call_drug_prevention_specialist", call_drug_prevention_specialist)
     graph.add_node("aggregate", aggregate)
 
     graph.set_entry_point("analyze_law")
@@ -285,16 +400,22 @@ def create_graph():
     graph.add_conditional_edges(
         "check_routing",
         route_to_specialists,
-        ["call_tax_specialist", "call_compliance_specialist", "aggregate"],
+        ["call_case_news_specialist", "call_law_detail_specialist",
+         "call_drug_prevention_specialist", "aggregate"],
     )
-    graph.add_edge("call_tax_specialist", "aggregate")
-    graph.add_edge("call_compliance_specialist", "aggregate")
+    graph.add_edge("call_case_news_specialist", "aggregate")
+    graph.add_edge("call_law_detail_specialist", "aggregate")
+    graph.add_edge("call_drug_prevention_specialist", "aggregate")
     graph.add_edge("aggregate", END)
 
     return graph.compile()
 
 
-QUESTION = "If a company breaks a contract and avoids taxes, what are the legal and regulatory consequences?"
+QUESTION = (
+    "Ca sĩ Châu Việt Cường phạm tội gì và bị kết án bao nhiêu năm? "
+    "Tội danh thuộc điều nào trong Bộ luật Hình sự? "
+    "Luật Phòng chống ma túy mới nhất 2025 có gì thay đổi so với 2021?"
+)
 
 
 async def main():
@@ -305,11 +426,15 @@ async def main():
     print("[How it works]")
     print("  1. Lead attorney agent analyses the question")
     print("  2. Router decides which specialist agents are needed")
-    print("  3. Tax + Compliance specialists run IN PARALLEL (LangGraph Send API)")
+    print("  3. Specialists run IN PARALLEL (LangGraph Send API):")
+    print("     - Case News Specialist: tra cứu vụ án thực tế từ báo chí")
+    print("     - Law Detail Specialist: tra cứu Bộ luật Hình sự")
+    print("     - Drug Prevention Specialist: tra cứu Luật Phòng chống ma túy")
     print("  4. Aggregator combines all analyses into a final answer")
     print()
     print("[Graph topology]")
-    print("  analyze_law -> check_routing -> [call_tax + call_compliance] -> aggregate -> END")
+    print("  analyze_law -> check_routing -> [case_news + law_detail + drug_prevention]")
+    print("                                          -> aggregate -> END")
     print()
     print(f"Question: {QUESTION}")
     print("-" * 70)
@@ -319,10 +444,12 @@ async def main():
     result = await graph.ainvoke({
         "question": QUESTION,
         "law_analysis": "",
-        "needs_tax": False,
-        "needs_compliance": False,
-        "tax_result": "",
-        "compliance_result": "",
+        "needs_case_news": False,
+        "needs_law_detail": False,
+        "needs_drug_prevention": False,
+        "case_news_result": "",
+        "law_detail_result": "",
+        "drug_prevention_result": "",
         "final_answer": "",
     })
 
@@ -335,9 +462,10 @@ async def main():
     print("-" * 70)
     print("[Improvements over Stage 3]")
     print("  + Specialisation: each agent has domain-specific expertise")
-    print("  + Parallel execution: tax + compliance agents run concurrently")
+    print("  + Parallel execution: specialists run concurrently via Send API")
     print("  + Better quality: specialist prompts produce deeper analysis")
-    print("  + Structured flow: explicit graph topology with routing logic")
+    print("  + Weaviate RAG: all tools grounded in real Vietnamese law database")
+    print("  + Conditional routing: only relevant specialists are dispatched")
     print()
     print("[Stage 4 (Monolith) vs Stage 5 (Distributed A2A)]")
     print("  +---------------------------+-------------------------------+")
