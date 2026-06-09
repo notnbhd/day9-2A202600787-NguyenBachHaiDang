@@ -1,0 +1,19 @@
+2026-06-09 17:32:44,763 [tax_agent] INFO HTTP Request: POST http://localhost:10000/register "HTTP/1.1 200 OK"
+2026-06-09 17:32:44,764 [tax_agent] INFO Registered with registry (attempt 1)
+2026-06-09 17:32:44,765 [tax_agent] INFO Tax Agent listening on port 10102
+INFO:     Started server process [300191]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:10102 (Press CTRL+C to quit)
+2026-06-09 17:33:32,179 [tax_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:48832 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:33:32,182 [tax_agent] INFO TaxAgent executing | task=b24bc83b-8a6a-4de7-81d9-8b7dfb466dec context=9f76e8ee-b89c-429f-a96d-7f20d8aefd7a trace=f6346689-c41f-4484-a3da-06db95c7f794 depth=2
+2026-06-09 17:33:32,429 [tax_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: b24bc83b-8a6a-4de7-81d9-8b7dfb466dec, context_id: 9f76e8ee-b89c-429f-a96d-7f20d8aefd7a).
+2026-06-09 17:33:33,548 [tax_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:48832 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:34:14,956 [tax_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:50866 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:34:14,958 [tax_agent] INFO TaxAgent executing | task=1d34a773-71de-4f60-86ea-6b43c6762095 context=84ebdf4b-2ffd-4c46-9d60-1ceb4c5aa96f trace=c7980f8b-34cf-48fc-bae6-75f5bd381c10 depth=2
+2026-06-09 17:34:14,959 [tax_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: 1d34a773-71de-4f60-86ea-6b43c6762095, context_id: 84ebdf4b-2ffd-4c46-9d60-1ceb4c5aa96f).
+2026-06-09 17:34:16,072 [tax_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50866 - "POST / HTTP/1.1" 200 OK

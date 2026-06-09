@@ -1,0 +1,3 @@
+Run 1 latency: 64.54s
+Run 2 latency: 46.82s
+Run 3 latency: 39.31s

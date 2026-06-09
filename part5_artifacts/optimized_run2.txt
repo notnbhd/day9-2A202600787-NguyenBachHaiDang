@@ -1,0 +1,67 @@
+/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/test_client.py:49: DeprecationWarning: A2AClient is deprecated and will be removed in a future version. Use ClientFactory to create a client with a JSON-RPC transport.
+  client = A2AClient(httpx_client=http_client, agent_card=agent_card)
+Connecting to Customer Agent at http://localhost:10100
+Question: If a company breaks a contract and avoids taxes, what are the legal and regulatory consequences?
+------------------------------------------------------------
+Connected to agent: Customer Agent v1.0.0
+------------------------------------------------------------
+Sending request (this may take 30-60s while agents chain)...
+
+RESPONSE:
+============================================================
+When a company breaches a contract while also engaging in tax evasion, it faces significant legal and regulatory consequences. Here’s a comprehensive overview of the implications:
+
+### 1. Breach of Contract
+
+**Legal Framework:**
+- A breach occurs when one party fails to meet its contractual obligations without a valid excuse.
+- Remedies can include compensatory damages, specific performance, or rescission, depending on the nature of the breach and the contract involved.
+
+**Consequences:**
+- **Damages:** The non-breaching party can seek compensatory damages for direct losses and potentially consequential damages for foreseeable indirect losses.
+- **Specific Performance:** Courts may order the breaching party to fulfill their contractual obligations, especially in cases involving unique goods or real estate.
+- **Rescission:** The non-breaching party may seek to nullify the contract, restoring both parties to their pre-contractual positions.
+
+### 2. Tax Evasion
+
+**Legal Framework:**
+- Tax evasion involves illegal practices to avoid paying taxes owed, governed by the Internal Revenue Code (IRC).
+- It is distinct from tax avoidance, which is legal.
+
+**Consequences:**
+- **Criminal Liability:** Individuals within the company may face criminal charges, leading to fines and imprisonment.
+- **Civil Penalties:** The IRS can impose substantial civil penalties for underpayment of taxes, including those for negligence and fraud.
+- **Audits and Investigations:** Engaging in tax evasion can trigger audits by the IRS or state tax authorities.
+
+### 3. Liability Exposure
+
+**Combined Consequences:**
+- **Reputational Damage:** The company may suffer significant reputational harm, leading to loss of business and customer trust.
+- **Shareholder Actions:** Shareholders may initiate lawsuits against executives for failing to act in the company's best interests.
+- **Regulatory Scrutiny:** Regulatory bodies may investigate the company, potentially resulting in sanctions.
+
+### 4. Case Law Principles
+
+- Courts evaluate the intent and circumstances surrounding breaches and tax evasion cases, often looking at the willfulness of actions taken by the company and its executives.
+
+### 5. Regulatory Compliance
+
+**Jurisdictional Authority:**
+- Breaches are typically governed by state contract law, while tax matters fall under the IRS's jurisdiction.
+
+**Remedies Available:**
+- Contractual remedies may include administrative processes like mediation or arbitration, while tax penalties can be civil or criminal.
+
+**Individual Liability:**
+- Both the company and individual executives may face liability for tax evasion, particularly if they directed or participated in the illegal activities.
+
+**Mitigating Factors:**
+- Voluntary disclosure of breaches or tax issues to authorities may mitigate penalties.
+- Implementing robust compliance measures can demonstrate due diligence and potentially reduce penalties.
+
+### Conclusion
+
+In summary, a company that breaches a contract and engages in tax evasion faces severe legal and regulatory consequences, including civil and criminal liabilities, reputational damage, and individual accountability for executives. It is essential for companies to maintain compliance with both contractual obligations and tax laws to mitigate these risks.
+
+If you have further questions or need specific legal guidance, please consult a licensed attorney.
+============================================================

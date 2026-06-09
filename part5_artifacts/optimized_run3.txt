@@ -1,0 +1,60 @@
+/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/test_client.py:49: DeprecationWarning: A2AClient is deprecated and will be removed in a future version. Use ClientFactory to create a client with a JSON-RPC transport.
+  client = A2AClient(httpx_client=http_client, agent_card=agent_card)
+Connecting to Customer Agent at http://localhost:10100
+Question: If a company breaks a contract and avoids taxes, what are the legal and regulatory consequences?
+------------------------------------------------------------
+Connected to agent: Customer Agent v1.0.0
+------------------------------------------------------------
+Sending request (this may take 30-60s while agents chain)...
+
+RESPONSE:
+============================================================
+When a company breaches a contract and engages in tax evasion, it faces a range of legal and regulatory consequences under both contract law and tax law. Here’s a comprehensive overview of the implications:
+
+### 1. Breach of Contract
+
+#### Legal Framework
+- **Contract Law Principles:** A breach occurs when one party fails to fulfill its contractual obligations. The injured party can seek remedies such as damages, specific performance, or rescission.
+- **Uniform Commercial Code (UCC):** For contracts involving goods, the UCC provides specific provisions regarding breaches and remedies.
+
+#### Consequences
+- **Damages:** The non-breaching party may recover compensatory damages, which aim to restore them to the position they would have been in had the contract been fulfilled.
+- **Specific Performance:** Courts may order the breaching party to fulfill its contractual obligations, especially in unique cases.
+- **Liquidated Damages:** If specified in the contract, the breaching party may owe a predetermined amount.
+- **Reputational Damage:** Breaching a contract can harm the company’s reputation, affecting future business opportunities.
+
+### 2. Tax Evasion
+
+#### Legal Framework
+- **Internal Revenue Code (IRC):** Tax evasion is a criminal offense under 26 U.S.C. § 7201, which prohibits willful attempts to evade tax obligations.
+- **False Statements and Fraud:** Making false statements on tax returns is also a criminal offense under 26 U.S.C. § 7206.
+
+#### Consequences
+- **Criminal Penalties:** Tax evasion can lead to imprisonment (up to five years) and substantial fines.
+- **Civil Penalties:** The IRS may impose civil penalties for underpayment, including interest and additional fines.
+- **Audits and Investigations:** Tax evasion may trigger audits by the IRS or state authorities.
+- **Loss of Business Licenses:** Severe tax evasion can result in the loss of business licenses.
+
+### 3. Combined Consequences
+
+When a company breaches a contract and engages in tax evasion, the consequences can compound:
+- **Increased Liability Exposure:** The company may face lawsuits from the non-breaching party while dealing with tax penalties.
+- **Potential for Class Action:** If multiple parties are affected, it could lead to class action lawsuits.
+- **Regulatory Scrutiny:** Regulatory bodies may intensify scrutiny, leading to investigations and sanctions.
+
+### 4. Regulatory Compliance
+
+#### Jurisdictional Authority
+- **Contract Breach:** Governed by state law, allowing the aggrieved party to seek remedies in civil court.
+- **Tax Matters:** The IRS oversees federal tax issues, while state tax authorities handle state-level matters.
+
+#### Remedies Available
+- **Administrative Remedies:** The IRS can impose penalties, while the aggrieved party can seek damages or specific performance.
+- **Civil and Criminal Remedies:** Breach of contract typically results in civil liability, whereas tax evasion can lead to criminal prosecution.
+
+### Conclusion
+
+In summary, a company that breaches a contract and engages in tax evasion faces significant legal and regulatory consequences, including potential damages from the non-breaching party and criminal penalties from tax authorities. It is crucial for companies to adhere to both contractual obligations and tax laws to mitigate liability and avoid severe repercussions. Consulting with licensed attorneys is advisable for navigating these complex issues effectively. 
+
+If you have any further questions or need assistance, feel free to ask!
+============================================================

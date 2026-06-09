@@ -1,0 +1,62 @@
+/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/test_client.py:49: DeprecationWarning: A2AClient is deprecated and will be removed in a future version. Use ClientFactory to create a client with a JSON-RPC transport.
+  client = A2AClient(httpx_client=http_client, agent_card=agent_card)
+Connecting to Customer Agent at http://localhost:10100
+Question: If a company breaks a contract and avoids taxes, what are the legal and regulatory consequences?
+------------------------------------------------------------
+Connected to agent: Customer Agent v1.0.0
+------------------------------------------------------------
+Sending request (this may take 30-60s while agents chain)...
+
+RESPONSE:
+============================================================
+When a company breaches a contract while also engaging in tax evasion, it faces a range of legal and regulatory consequences. Here’s a comprehensive overview of the potential implications:
+
+### 1. Breach of Contract
+
+- **Legal Principles**: A breach occurs when one party fails to fulfill its contractual obligations without a lawful excuse. The non-breaching party can seek remedies such as:
+  - **Damages**: Compensation for losses incurred due to the breach.
+  - **Specific Performance**: A court order requiring the breaching party to fulfill its contractual obligations.
+  - **Rescission**: Cancellation of the contract, returning both parties to their pre-contractual positions.
+
+- **Relevant Laws**: The Uniform Commercial Code (UCC) governs contracts for the sale of goods, while common law principles apply to other types of contracts.
+
+### 2. Tax Evasion
+
+- **Legal Principles**: Tax evasion involves illegal actions to avoid paying taxes owed, such as underreporting income.
+  
+- **Liabilities**:
+  - **Civil Penalties**: The IRS can impose fines and interest on unpaid taxes.
+  - **Criminal Charges**: Tax evasion can lead to felony charges, with potential prison sentences and significant fines.
+
+- **Relevant Laws**: The Internal Revenue Code (IRC) outlines tax obligations and penalties for evasion.
+
+### 3. Regulatory Consequences
+
+- **Increased Scrutiny**: Companies may face more frequent audits and investigations from regulatory bodies.
+- **Loss of Licenses**: Regulatory authorities may revoke necessary licenses or permits.
+- **Reputational Damage**: Breaches and tax evasion can harm a company’s reputation, affecting relationships with clients and investors.
+
+### 4. Liability Exposure
+
+- **Contractual Liability**: The company may owe damages to the non-breaching party, including lost profits and legal fees.
+- **Tax Liability**: The company will be responsible for unpaid taxes, penalties, and interest.
+- **Potential Class Action**: If the breach affects a large group, the company could face class action lawsuits.
+
+### 5. Individual Liability
+
+Executives and board members may also face personal liability if they were involved in the breach or tax evasion, leading to civil and criminal penalties.
+
+### 6. Mitigating Factors
+
+Certain actions can mitigate penalties:
+- **Voluntary Disclosure**: Proactively informing authorities about breaches or tax issues can reduce penalties.
+- **Cooperation**: Full cooperation with investigations may lead to leniency.
+- **Remediation**: Taking steps to correct the breach or tax issue can be viewed favorably.
+- **Compliance Programs**: Implementing robust compliance measures can help mitigate enforcement actions.
+
+### Conclusion
+
+In summary, a company that breaches a contract and engages in tax evasion faces serious legal and regulatory consequences, including civil and criminal liabilities, reputational harm, and increased scrutiny from regulators. It is crucial for companies to address these risks proactively and ensure compliance with both contractual and tax obligations.
+
+For specific legal advice tailored to your situation, it is advisable to consult licensed attorneys.
+============================================================

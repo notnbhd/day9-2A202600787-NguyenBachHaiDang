@@ -1,0 +1,3 @@
+Run 4 latency: 50.69s
+Run 5 latency: 45.66s
+Run 6 latency: 51.90s

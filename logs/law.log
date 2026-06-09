@@ -1,0 +1,231 @@
+2026-06-09 17:23:11,977 [law_agent] INFO HTTP Request: POST http://localhost:10000/register "HTTP/1.1 200 OK"
+2026-06-09 17:23:11,977 [law_agent] INFO Registered with registry (attempt 1)
+2026-06-09 17:23:11,978 [law_agent] INFO Law Agent listening on port 10101
+INFO:     Started server process [295345]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:10101 (Press CTRL+C to quit)
+2026-06-09 17:23:27,040 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:48396 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:23:27,042 [law_agent] INFO LawAgent executing | task=670001cc-09bd-4f32-b41d-f8b518c8d9ec context=461d95e5-5009-4504-8c42-5c6a3b05b6a1 trace=0acb2a34-62b7-4046-b8f1-59e35e998f37 depth=1
+2026-06-09 17:23:27,043 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: 670001cc-09bd-4f32-b41d-f8b518c8d9ec, context_id: 461d95e5-5009-4504-8c42-5c6a3b05b6a1).
+2026-06-09 17:23:27,044 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:23:27,329 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:23:27,334 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:23:27,341 [law_agent] INFO HTTP Request: GET http://localhost:10102/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:23:27,342 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:23:28,458 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:23:36,300 [law_agent] INFO HTTP Request: POST http://localhost:10102 "HTTP/1.1 200 OK"
+2026-06-09 17:23:36,302 [law_agent] INFO Tax Agent returned 3208 chars
+2026-06-09 17:23:48,837 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:23:48,838 [law_agent] INFO Compliance Agent returned 3504 chars
+2026-06-09 17:23:49,619 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:48396 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:24:31,759 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:47764 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:24:31,760 [law_agent] INFO LawAgent executing | task=5adfee55-f61d-4f6a-a8dc-7b8d2b194fdb context=8c9deb44-8596-4ef8-8e59-6025356be587 trace=14d32cf5-8e19-4526-8381-6bb6df555642 depth=1
+2026-06-09 17:24:31,761 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: 5adfee55-f61d-4f6a-a8dc-7b8d2b194fdb, context_id: 8c9deb44-8596-4ef8-8e59-6025356be587).
+2026-06-09 17:24:31,761 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:24:31,773 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:24:31,778 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:24:31,784 [law_agent] INFO HTTP Request: GET http://localhost:10102/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:24:31,785 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:24:33,050 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:24:39,619 [law_agent] INFO HTTP Request: POST http://localhost:10102 "HTTP/1.1 200 OK"
+2026-06-09 17:24:39,619 [law_agent] INFO Tax Agent returned 3245 chars
+2026-06-09 17:24:50,381 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:24:50,382 [law_agent] INFO Compliance Agent returned 3290 chars
+2026-06-09 17:24:53,144 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:47764 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:25:18,704 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:56634 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:25:18,706 [law_agent] INFO LawAgent executing | task=763f7403-95cc-4eed-94f6-f45a246619a0 context=a271a72d-f2ec-4983-9867-aebd527be7bf trace=4455ec67-b021-430a-9bb2-e692b806939e depth=1
+2026-06-09 17:25:18,706 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: 763f7403-95cc-4eed-94f6-f45a246619a0, context_id: a271a72d-f2ec-4983-9867-aebd527be7bf).
+2026-06-09 17:25:18,706 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:25:18,719 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:25:18,724 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:25:18,730 [law_agent] INFO HTTP Request: GET http://localhost:10102/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:25:18,730 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:25:19,562 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:25:26,506 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:25:26,507 [law_agent] INFO Compliance Agent returned 3120 chars
+2026-06-09 17:25:33,339 [law_agent] INFO HTTP Request: POST http://localhost:10102 "HTTP/1.1 200 OK"
+2026-06-09 17:25:33,340 [law_agent] INFO Tax Agent returned 3067 chars
+2026-06-09 17:25:34,308 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56634 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:26:39,354 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:45656 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:26:39,356 [law_agent] INFO LawAgent executing | task=00074b72-b3f8-4671-81a0-81cd2215989a context=f1e81af5-2770-4239-810c-555defb61e26 trace=fceec80b-82c6-4dd9-bf1d-2b554cba52fa depth=1
+2026-06-09 17:26:39,356 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: 00074b72-b3f8-4671-81a0-81cd2215989a, context_id: f1e81af5-2770-4239-810c-555defb61e26).
+2026-06-09 17:26:39,356 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:26:39,369 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:26:39,374 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:26:39,380 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:26:39,381 [law_agent] INFO HTTP Request: GET http://localhost:10102/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:26:40,358 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:26:49,702 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:26:49,702 [law_agent] INFO Compliance Agent returned 3167 chars
+2026-06-09 17:26:53,382 [law_agent] INFO HTTP Request: POST http://localhost:10102 "HTTP/1.1 200 OK"
+2026-06-09 17:26:53,383 [law_agent] INFO Tax Agent returned 3264 chars
+2026-06-09 17:26:54,184 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:45656 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:27:29,835 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:40406 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:27:29,837 [law_agent] INFO LawAgent executing | task=e12e8447-ba03-4034-b498-441d2fc95db7 context=3b256d70-b255-4f75-88a3-6288724b0259 trace=a4fc5aa9-89b3-428c-a0f9-1fdb6b8b1341 depth=1
+2026-06-09 17:27:29,837 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: e12e8447-ba03-4034-b498-441d2fc95db7, context_id: 3b256d70-b255-4f75-88a3-6288724b0259).
+2026-06-09 17:27:29,837 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:27:29,850 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:27:29,854 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:27:29,860 [law_agent] INFO HTTP Request: GET http://localhost:10102/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:27:29,860 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:27:30,949 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:27:39,018 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:27:39,019 [law_agent] INFO Compliance Agent returned 3239 chars
+2026-06-09 17:27:44,112 [law_agent] INFO HTTP Request: POST http://localhost:10102 "HTTP/1.1 200 OK"
+2026-06-09 17:27:44,113 [law_agent] INFO Tax Agent returned 3525 chars
+2026-06-09 17:27:55,965 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:40406 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:28:15,611 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:35750 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:28:15,613 [law_agent] INFO LawAgent executing | task=d41d62fe-66cc-40f1-85fc-219162760761 context=cf7b3c75-a780-4ddb-93b4-52bc62d258df trace=b4a7d12d-1d7c-4306-9c7b-269763219ad3 depth=1
+2026-06-09 17:28:15,614 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: d41d62fe-66cc-40f1-85fc-219162760761, context_id: cf7b3c75-a780-4ddb-93b4-52bc62d258df).
+2026-06-09 17:28:15,614 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:28:15,627 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:28:15,631 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:28:15,638 [law_agent] INFO HTTP Request: GET http://localhost:10102/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:28:15,638 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:28:17,022 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:28:24,115 [law_agent] INFO HTTP Request: POST http://localhost:10102 "HTTP/1.1 200 OK"
+2026-06-09 17:28:24,115 [law_agent] INFO Tax Agent returned 3115 chars
+2026-06-09 17:28:31,263 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:28:31,263 [law_agent] INFO Compliance Agent returned 3319 chars
+2026-06-09 17:28:31,973 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:35750 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:29:46,582 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:34228 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:29:46,584 [law_agent] INFO LawAgent executing | task=41e118c6-e011-4591-a685-b9dae5acaf55 context=0eb90afa-1131-4db0-b152-d476f028b834 trace=a2864746-004f-4f76-94db-c918368af7d1 depth=1
+2026-06-09 17:29:46,584 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: 41e118c6-e011-4591-a685-b9dae5acaf55, context_id: 0eb90afa-1131-4db0-b152-d476f028b834).
+2026-06-09 17:29:46,584 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:29:46,597 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:29:46,602 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:29:46,607 [law_agent] ERROR call_tax failed: All connection attempts failed
+Traceback (most recent call last):
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 124, in _connect
+    stream = await self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpcore/_backends/auto.py", line 31, in connect_tcp
+    return await self._backend.connect_tcp(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 113, in connect_tcp
+    with map_exceptions(exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: All connection attempts failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/law_agent/graph.py", line 129, in call_tax
+    result = await delegate(
+             ^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/common/a2a_client.py", line 50, in delegate
+    card_resp = await http_client.get(card_url)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1768, in get
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nacho/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: All connection attempts failed
+2026-06-09 17:29:46,619 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:29:47,955 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:30:01,466 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:30:01,466 [law_agent] INFO Compliance Agent returned 3445 chars
+2026-06-09 17:30:04,430 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:34228 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:31:15,215 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:46784 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:31:15,217 [law_agent] INFO LawAgent executing | task=17f04aca-cace-4de3-8d60-6a2fb3f48459 context=a8be5bbb-aa83-4bc2-9c6b-7c4d699bcf03 trace=f0c60aa5-1ce1-4b2a-8e67-e07f29441964 depth=1
+2026-06-09 17:31:15,217 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: 17f04aca-cace-4de3-8d60-6a2fb3f48459, context_id: a8be5bbb-aa83-4bc2-9c6b-7c4d699bcf03).
+2026-06-09 17:31:15,218 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:31:15,231 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:31:15,236 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:31:15,242 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:31:15,243 [law_agent] INFO HTTP Request: GET http://localhost:10102/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:31:16,433 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:31:17,897 [law_agent] INFO HTTP Request: POST http://localhost:10102 "HTTP/1.1 200 OK"
+2026-06-09 17:31:17,897 [law_agent] INFO Tax Agent returned 651 chars
+2026-06-09 17:31:39,165 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:31:39,166 [law_agent] INFO Compliance Agent returned 3125 chars
+2026-06-09 17:31:40,131 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:46784 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:33:32,154 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:40402 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:33:32,156 [law_agent] INFO LawAgent executing | task=1eb277fc-c740-4a95-b628-faf689f8c29d context=9f76e8ee-b89c-429f-a96d-7f20d8aefd7a trace=f6346689-c41f-4484-a3da-06db95c7f794 depth=1
+2026-06-09 17:33:32,156 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: 1eb277fc-c740-4a95-b628-faf689f8c29d, context_id: 9f76e8ee-b89c-429f-a96d-7f20d8aefd7a).
+2026-06-09 17:33:32,156 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:33:32,169 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:33:32,173 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:33:32,179 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:33:32,180 [law_agent] INFO HTTP Request: GET http://localhost:10102/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:33:33,237 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:33:41,576 [law_agent] INFO HTTP Request: POST http://localhost:10102 "HTTP/1.1 200 OK"
+2026-06-09 17:33:41,576 [law_agent] INFO Tax Agent returned 3342 chars
+2026-06-09 17:33:42,458 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:33:42,458 [law_agent] INFO Compliance Agent returned 3452 chars
+2026-06-09 17:33:43,478 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:40402 - "POST / HTTP/1.1" 200 OK
+2026-06-09 17:34:14,930 [law_agent] WARNING Deprecated agent card endpoint '/.well-known/agent.json' accessed. Please use '/.well-known/agent-card.json' instead. This endpoint will be removed in a future version.
+INFO:     127.0.0.1:46688 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+2026-06-09 17:34:14,931 [law_agent] INFO LawAgent executing | task=4e0b90d3-e348-4424-9d47-2a138557bb3f context=84ebdf4b-2ffd-4c46-9d60-1ceb4c5aa96f trace=c7980f8b-34cf-48fc-bae6-75f5bd381c10 depth=1
+2026-06-09 17:34:14,932 [law_agent] INFO Task not found or task_id not set. Creating new task for event (task_id: 4e0b90d3-e348-4424-9d47-2a138557bb3f, context_id: 84ebdf4b-2ffd-4c46-9d60-1ceb4c5aa96f).
+2026-06-09 17:34:14,932 [law_agent] INFO Routing decision (keyword): needs_tax=True needs_compliance=True
+2026-06-09 17:34:14,946 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/compliance_question "HTTP/1.1 200 OK"
+2026-06-09 17:34:14,950 [law_agent] INFO HTTP Request: GET http://localhost:10000/discover/tax_question "HTTP/1.1 200 OK"
+2026-06-09 17:34:14,956 [law_agent] INFO HTTP Request: GET http://localhost:10103/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:34:14,957 [law_agent] INFO HTTP Request: GET http://localhost:10102/.well-known/agent.json "HTTP/1.1 200 OK"
+2026-06-09 17:34:15,955 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-09 17:34:23,123 [law_agent] INFO HTTP Request: POST http://localhost:10102 "HTTP/1.1 200 OK"
+2026-06-09 17:34:23,124 [law_agent] INFO Tax Agent returned 3311 chars
+2026-06-09 17:34:28,125 [law_agent] INFO HTTP Request: POST http://localhost:10103 "HTTP/1.1 200 OK"
+2026-06-09 17:34:28,126 [law_agent] INFO Compliance Agent returned 2907 chars
+2026-06-09 17:34:28,944 [law_agent] INFO HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:46688 - "POST / HTTP/1.1" 200 OK

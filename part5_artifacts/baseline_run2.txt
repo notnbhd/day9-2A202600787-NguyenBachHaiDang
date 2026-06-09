@@ -1,0 +1,57 @@
+/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/test_client.py:49: DeprecationWarning: A2AClient is deprecated and will be removed in a future version. Use ClientFactory to create a client with a JSON-RPC transport.
+  client = A2AClient(httpx_client=http_client, agent_card=agent_card)
+Connecting to Customer Agent at http://localhost:10100
+Question: If a company breaks a contract and avoids taxes, what are the legal and regulatory consequences?
+------------------------------------------------------------
+Connected to agent: Customer Agent v1.0.0
+------------------------------------------------------------
+Sending request (this may take 30-60s while agents chain)...
+
+RESPONSE:
+============================================================
+When a company breaches a contract and engages in tax evasion, it faces significant legal and regulatory consequences. Here's a comprehensive overview of the implications:
+
+### 1. Breach of Contract
+
+**Legal Framework**:
+- A breach of contract occurs when one party fails to fulfill its obligations without a lawful excuse. The injured party is entitled to remedies such as damages, specific performance, or rescission.
+
+**Consequences**:
+- **Damages**: The non-breaching party can seek compensatory damages to cover losses incurred due to the breach. This may include lost profits and consequential damages.
+- **Specific Performance**: Courts may order the breaching party to fulfill their contractual obligations, particularly in cases involving unique goods or real estate.
+- **Legal Fees**: Depending on the contract terms, the non-breaching party may recover attorney's fees and costs.
+
+### 2. Tax Evasion
+
+**Legal Framework**:
+- Tax evasion involves illegal actions to avoid paying taxes, such as underreporting income. The Internal Revenue Code (IRC) governs federal tax obligations.
+
+**Consequences**:
+- **Criminal Liability**: Tax evasion is a felony, potentially leading to prison time, fines, and restitution. The IRS can impose penalties that may reach up to 75% of the unpaid tax due to fraud.
+- **Civil Penalties**: The IRS may impose civil penalties for underpayment of taxes, including interest and fines.
+- **Reputational Damage**: Companies found guilty of tax evasion may suffer reputational harm, leading to loss of business and investor confidence.
+
+### 3. Combined Consequences
+
+When both a breach of contract and tax evasion occur, the consequences can compound:
+- **Increased Liability Exposure**: The company may face lawsuits for damages while also facing criminal charges for tax evasion.
+- **Regulatory Scrutiny**: Increased scrutiny from regulatory agencies can lead to audits and further investigations.
+- **Potential for Class Action**: If the breach affects multiple parties, it could lead to class action lawsuits.
+
+### 4. Individual Liability
+
+C-Suite executives and board members may face personal liability for corporate misconduct if they were directly involved in the decisions leading to the breach or tax evasion.
+
+### 5. Mitigating Factors
+
+- **Voluntary Disclosure**: Companies that voluntarily disclose tax issues may receive more lenient treatment from the IRS.
+- **Cooperation**: Cooperating with regulatory investigations can mitigate consequences.
+- **Remediation**: Taking steps to correct the breach or pay owed taxes can help reduce penalties.
+- **Compliance Programs**: A robust compliance program can demonstrate that the company took reasonable steps to prevent violations.
+
+### Conclusion
+
+In summary, a company that breaches a contract while engaging in tax evasion faces severe legal and regulatory consequences, including civil litigation, criminal charges, and reputational harm. It is crucial for companies to ensure compliance with contractual obligations and tax laws to mitigate these risks. Legal counsel should be sought to navigate the complexities of both areas effectively. 
+
+**Disclaimer**: This analysis is for educational purposes only. For specific legal advice, please consult a licensed attorney.
+============================================================

@@ -1,0 +1,65 @@
+/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/test_client.py:49: DeprecationWarning: A2AClient is deprecated and will be removed in a future version. Use ClientFactory to create a client with a JSON-RPC transport.
+  client = A2AClient(httpx_client=http_client, agent_card=agent_card)
+Connecting to Customer Agent at http://localhost:10100
+Question: If a company breaks a contract and avoids taxes, what are the legal and regulatory consequences?
+------------------------------------------------------------
+Connected to agent: Customer Agent v1.0.0
+------------------------------------------------------------
+Sending request (this may take 30-60s while agents chain)...
+
+RESPONSE:
+============================================================
+When a company breaches a contract and engages in tax avoidance, it faces significant legal and regulatory consequences across various areas of law. Here's a comprehensive overview of the potential implications:
+
+### 1. Breach of Contract
+
+**Legal Framework**: A breach occurs when one party fails to fulfill its contractual obligations without a valid excuse.
+
+**Consequences**:
+- **Damages**: The non-breaching party can seek:
+  - **Compensatory Damages**: For direct losses resulting from the breach.
+  - **Consequential Damages**: For foreseeable additional losses.
+  - **Punitive Damages**: In cases of egregious breaches.
+  
+- **Specific Performance**: Courts may compel the breaching party to fulfill its obligations.
+  
+- **Rescission**: The contract may be nullified, restoring parties to their original positions.
+  
+- **Liquidated Damages**: Some contracts specify predetermined damages for breaches.
+
+### 2. Tax Avoidance
+
+**Legal Framework**: Tax avoidance is legal, but tax evasion is illegal. The Internal Revenue Code (IRC) governs federal tax matters.
+
+**Consequences**:
+- **Civil Penalties**: Substantial understatements of tax can incur penalties of 20% of the underpayment, escalating to 75% for fraud.
+  
+- **Criminal Penalties**: Willful tax evasion can lead to felony charges, with fines up to $250,000 for individuals and imprisonment for up to 5 years.
+  
+- **Audits**: The IRS or state tax authorities may conduct audits, leading to further scrutiny.
+
+### 3. Liability Exposure
+
+**Combined Liability**: A company faces multiple layers of liability:
+- **Civil Liability**: Lawsuits for damages from the non-breaching party.
+- **Regulatory Liability**: Fines from tax authorities for inappropriate tax strategies.
+- **Reputational Damage**: Harm to relationships with stakeholders.
+
+**Individual Liability**: Corporate officers may face personal liability for directing or participating in breaches or tax avoidance.
+
+### 4. Regulatory Compliance
+
+**Jurisdiction**: 
+- Breach of contract typically falls under state law.
+- Tax avoidance is overseen by the IRS and state tax authorities.
+
+**Mitigating Factors**:
+- **Voluntary Disclosure**: Disclosing issues to authorities may mitigate penalties.
+- **Cooperation**: Full cooperation with investigations can be favorable.
+- **Compliance Programs**: Demonstrating effective compliance may reduce penalties.
+
+### Conclusion
+A company that breaches a contract and engages in tax avoidance faces severe legal and regulatory consequences, including civil and criminal liabilities. It is crucial for companies to navigate these complex legal landscapes carefully and seek licensed legal counsel for tailored guidance. 
+
+This overview is for informational purposes only and should not be considered legal advice.
+============================================================

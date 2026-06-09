@@ -1,0 +1,72 @@
+/home/nacho/Vin_20KAI/day9-2A202600787-NguyenBachHaiDang/test_client.py:49: DeprecationWarning: A2AClient is deprecated and will be removed in a future version. Use ClientFactory to create a client with a JSON-RPC transport.
+  client = A2AClient(httpx_client=http_client, agent_card=agent_card)
+Connecting to Customer Agent at http://localhost:10100
+Question: If a company breaks a contract and avoids taxes, what are the legal and regulatory consequences?
+------------------------------------------------------------
+Connected to agent: Customer Agent v1.0.0
+------------------------------------------------------------
+Sending request (this may take 30-60s while agents chain)...
+
+RESPONSE:
+============================================================
+When a company breaches a contract and engages in tax evasion, it faces a range of legal and regulatory consequences. Here’s a comprehensive overview of the implications under contract law, tax law, and regulatory compliance:
+
+### 1. Contract Law Consequences
+
+**A. Breach of Contract**
+- A breach occurs when one party fails to fulfill its obligations under the contract without a lawful excuse. Breaches can be classified as:
+  - **Material Breach**: Significant enough to allow the non-breaching party to terminate the contract and seek damages.
+  - **Minor Breach**: Less significant, allowing for damages but not termination.
+
+**B. Remedies for Breach**
+- The non-breaching party may pursue several remedies:
+  - **Damages**: 
+    - **Expectation Damages**: Compensate for what the non-breaching party expected to gain from the contract.
+    - **Consequential Damages**: Cover losses that were foreseeable at the time of the contract.
+    - **Liquidated Damages**: Pre-agreed amounts specified in the contract.
+  - **Specific Performance**: A court order requiring the breaching party to fulfill their contractual obligations.
+  - **Rescission**: Nullifying the contract entirely.
+
+### 2. Tax Law Consequences
+
+**A. Tax Evasion**
+- Tax evasion is the illegal act of not paying taxes owed, often through misrepresentation. It is a criminal offense under the Internal Revenue Code (IRC).
+
+**B. Consequences of Tax Evasion**
+- **Civil Penalties**: The IRS can impose significant fines, including:
+  - **Failure-to-File Penalty**: Generally 5% of unpaid taxes per month, up to 25%.
+  - **Failure-to-Pay Penalty**: Typically 0.5% of unpaid taxes per month.
+- **Criminal Penalties**: Can lead to felony charges, with penalties including:
+  - **Fines**: Up to $250,000 for individuals and $500,000 for corporations.
+  - **Imprisonment**: Up to 5 years in prison.
+
+**C. Regulatory Scrutiny**
+- Tax evasion may lead to audits and investigations by the IRS or state tax authorities, increasing penalties and damaging the company's reputation.
+
+### 3. Liability Exposure
+
+**A. Joint Liability**
+- Company officers and directors may face personal liability if they were complicit in the breach or tax evasion.
+
+**B. Shareholder Actions**
+- Shareholders may initiate derivative actions against management for failing to act in the company’s best interests, especially if these actions lead to financial losses.
+
+### 4. Regulatory Compliance Considerations
+
+**A. Jurisdictional Agencies**
+- **Contract Breach**: Typically handled in civil courts, but may attract DOJ attention if fraud is involved.
+- **Tax Matters**: Oversight by the IRS and state tax authorities.
+
+**B. Mitigating Factors**
+- **Voluntary Disclosure**: Companies may reduce penalties by voluntarily disclosing breaches or tax issues.
+- **Cooperation**: Full cooperation with investigations can be a mitigating factor.
+- **Remediation**: Corrective actions, such as paying owed taxes or compensating affected parties, can help reduce penalties.
+
+**C. Cross-Border Regulatory Exposure**
+- Multinational companies may face scrutiny from foreign regulatory bodies if actions violate local laws, including implications under the Foreign Corrupt Practices Act (FCPA).
+
+### Conclusion
+In summary, a company that breaches a contract while engaging in tax evasion faces significant legal and regulatory repercussions, including potential damages under contract law and severe civil and criminal penalties under tax law. It is crucial for affected parties to consult with licensed attorneys to navigate these complex issues effectively. 
+
+**Disclaimer**: This analysis is for educational purposes only and should not be construed as legal advice. Clients are encouraged to consult licensed attorneys for guidance tailored to their specific situations.
+============================================================
